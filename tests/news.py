@@ -102,3 +102,50 @@ NEWS = [
 ]
 
 EXPECTED_NEWS = [(notice["title"], notice["url"]) for notice in NEWS]
+
+EXPECTED_NEWS_REQ11 = [
+    [
+        "Ferramentas",
+        "Categoria_0",
+        "Novidades",
+        "Categoria_7",
+        "Categoria_9",
+    ],
+    [
+        "Ferramentas",
+        "Categoria_0",
+        "Categoria_7",
+        "Novidades",
+        "Categoria_9",
+    ],
+    [
+        "Ferramentas",
+        "Categoria_7",
+        "Novidades",
+        "Categoria_0",
+        "Categoria_9",
+    ],
+    [
+        "Ferramentas",
+        "Categoria_7",
+        "Categoria_0",
+        "Novidades",
+        "Categoria_9",
+    ],
+    [
+        "Ferramentas",
+        "Novidades",
+        "Categoria_7",
+        "Categoria_0",
+        "Categoria_9",
+    ],
+    [
+        "Ferramentas",
+        "Novidades",
+        "Categoria_0",
+        "Categoria_7",
+        "Categoria_9",
+    ],
+]
+
+EXPECTED_NEWS_REQ11_2 = [item[:-1] for item in EXPECTED_NEWS_REQ11]
