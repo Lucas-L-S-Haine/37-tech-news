@@ -1,6 +1,11 @@
 from tech_news.analyzer.ratings import top_5_news, top_5_categories
 from tech_news.database import db
-from tests.news import NEWS, EXPECTED_NEWS
+from tests.news import (
+    NEWS,
+    EXPECTED_NEWS,
+    EXPECTED_NEWS_REQ11,
+    EXPECTED_NEWS_REQ11_2,
+)
 
 
 # Req.10
@@ -27,24 +32,13 @@ def test_listar_as_top_cinco_categorias():
 
     # é possível buscar as cinco top 5 categorias
     db.news.insert_many(NEWS)
-    assert top_5_categories() == [
-        "Ferramentas",
-        "Categoria_0",
-        "Novidades",
-        "Categoria_7",
-        "Categoria_9",
-    ]
+    assert top_5_categories() in EXPECTED_NEWS_REQ11
 
     # caso houver menos de 5 categorias, serão retornadas quantas houverem
     db.news.delete_many({})
     db.news.insert_many(NEWS[:-1])
 
-    assert top_5_categories() == [
-        "Ferramentas",
-        "Categoria_0",
-        "Novidades",
-        "Categoria_7",
-    ]
+    assert top_5_categories() in EXPECTED_NEWS_REQ11_2
 
     # buscar top categorias retornar vazio caso nao exista noticias
     db.news.delete_many({})
