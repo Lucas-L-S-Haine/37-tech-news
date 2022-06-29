@@ -1,6 +1,16 @@
+from tech_news.database import db
+
+
 # Requisito 6
 def search_by_title(title):
-    """Seu código deve vir aqui"""
+    query = db.news.find(
+        {"title": {"$regex": title, "$options": "i"}},
+        {"_id": False, "title": True, "url": True})
+    news_list = list(query)
+    result = []
+    for news in news_list:
+        result.append((news["title"], news["url"]))
+    return result
 
 
 # Requisito 7
