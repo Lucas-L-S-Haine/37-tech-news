@@ -1,5 +1,4 @@
 import time
-from math import floor, ceil
 import requests
 from parsel import Selector
 
