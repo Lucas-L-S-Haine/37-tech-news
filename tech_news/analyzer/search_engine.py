@@ -60,8 +60,6 @@ def search_by_date(date):
     result = []
     for news in news_list:
         result.append((news["title"], news["url"]))
-    print("\n", date)
-    print("\n", result)
     return result
 
 
