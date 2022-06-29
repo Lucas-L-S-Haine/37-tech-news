@@ -54,7 +54,7 @@ def search_by_date(date):
     year = datetime.date.fromisoformat(date).strftime("%Y")
     search_date = f"{day} de {month_br} de {year}"
     query = db.news.find(
-        {"timestamp": search_date},
+        {"timestamp": {"$regex": search_date, "$options": "i"}},
         {"_id": False, "title": True, "url": True})
     news_list = list(query)
     result = []
