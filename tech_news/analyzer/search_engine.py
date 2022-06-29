@@ -1,5 +1,4 @@
 import datetime
-import re
 
 from tech_news.database import db
 
