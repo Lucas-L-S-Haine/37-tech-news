@@ -50,7 +50,9 @@ def search_by_date(date):
     validate_date(date)
     month = datetime.date.fromisoformat(date).strftime("%B")
     month_br = translate_month(month)
-    day = datetime.date.fromisoformat(date).strftime("%d").removeprefix("0")
+    day = datetime.date.fromisoformat(date).strftime("%d")
+    if day[0] == "0":
+        day = day[1:]
     year = datetime.date.fromisoformat(date).strftime("%Y")
     search_date = f"{day} de {month_br} de {year}"
     query = db.news.find(
