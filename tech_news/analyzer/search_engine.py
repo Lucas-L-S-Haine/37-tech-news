@@ -47,8 +47,7 @@ def validate_date(date_str):
 
 
 def search_by_date(date):
-    if not validate_date(date):
-        raise(ValueError("Data inválida"))
+    validate_date(date)
     month = datetime.date.fromisoformat(date).strftime("%B")
     month_br = translate_month(month)
     day = datetime.date.fromisoformat(date).strftime("%d").removeprefix("0")
