@@ -1,6 +1,9 @@
 import time
+from math import floor, ceil
 import requests
 from parsel import Selector
+
+from tech_news.database import create_news
 
 
 # Requisito 1
@@ -61,5 +64,30 @@ def scrape_noticia(html_content):
 
 
 # Requisito 5
+def get_url_list(amount):
+    base_url = "https://blog.betrybe.com/"
+    next_page_url = base_url
+    links_list = []
+    while len(links_list) <= amount:
+        html_content = fetch(next_page_url)
+        links = scrape_novidades(html_content)
+        next_page_url = scrape_next_page_link(html_content)
+        links_list.extend(links)
+    result = links_list[0:amount]
+    return result
+
+
+def get_scrape_noticia(url_list):
+    news_info_list = []
+    for url in url_list:
+        html_content = fetch(url)
+        news_info = scrape_noticia(html_content)
+        news_info_list.append(news_info)
+    return news_info_list
+
+
 def get_tech_news(amount):
-    """Seu código deve vir aqui"""
+    url_list = get_url_list(amount)
+    result = get_scrape_noticia(url_list)
+    create_news(result)
+    return result
